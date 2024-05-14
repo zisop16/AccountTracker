@@ -1,20 +1,15 @@
 import discord
 from discord import app_commands
 from discord.ext import commands, tasks
-import typing
 import os
 from dotenv import load_dotenv, find_dotenv
 import re
-import json
 import asyncio
-import sys, traceback
 
 import ServerIDs
 
 load_dotenv(find_dotenv())
 BOT_TOKEN = os.getenv("TOKEN")
-MONGO_PASS = os.getenv("MONGO_PASS")
-MONGO_USER = os.getenv("MONGO_USER")
 
 account_names = ["Seforius", "Gloopie1", "Syrup", "Ethan"]
 reasons = ["PVP", "Questing", "Raiding", "Farming"]
@@ -161,10 +156,7 @@ async def logout(interaction: discord.Interaction, account_name: app_commands.Ch
         content=f"You logged {previous_user} out of the account: {account_name.value}", ephemeral=True
     )
     edit = status_message.edit(embed=embed)
-    logout_message = await logout_message
-    await edit
-    await asyncio.sleep(60)
-    await logout_message.delete()
+    await logout_message, await edit
 
 @tasks.loop(seconds = 30)
 async def delete_invites():
