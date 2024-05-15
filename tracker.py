@@ -108,7 +108,7 @@ async def login(interaction: discord.Interaction, account_name: app_commands.Cho
         return
     
     embed.remove_field(target_ind)
-    embed.add_field(name=f"Account: {account_name.value}", value=f"Status: Logged in by {interaction.user.mention}\nFor: {reason}")
+    embed.add_field(name=f"Account: {account_name.value}", value=f"Status: Logged in by {interaction.user.mention}\nFor: {reason}", inline=False)
     await status_message.edit(embed=embed)
 
     await interaction.followup.send(embed=discord.Embed(
@@ -151,7 +151,7 @@ async def logout(interaction: discord.Interaction, account_name: app_commands.Ch
         await interaction.followup.send(content="You can't log this account out, because nobody is using it.", ephemeral=True)
         return
     embed.remove_field(target_ind)
-    embed.add_field(name=f"Account: {account_name.value}", value=f"Status: Logged out")
+    embed.add_field(name=f"Account: {account_name.value}", value=f"Status: Logged out", inline=False)
     logout_message = interaction.followup.send(
         content=f"You logged {previous_user} out of the account: {account_name.value}", ephemeral=True
     )
