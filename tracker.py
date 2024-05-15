@@ -158,7 +158,7 @@ async def logout(interaction: discord.Interaction, account_name: app_commands.Ch
     edit = status_message.edit(embed=embed)
     await logout_message, await edit
 
-@tasks.loop(seconds = 30)
+@tasks.loop(seconds = 1)
 async def delete_invites():
     if invites_allowed():
         return
